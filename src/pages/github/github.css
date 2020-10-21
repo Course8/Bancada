@@ -1,0 +1,18 @@
+.circle-photo {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+}
+
+.bg-card{
+    background-color: #21242b;
+    margin-bottom: 0.8rem;
+    margin-left: 0.8rem;
+    margin-top: 0.8rem;
+    border: 2px solid #111418;
+}
+
+.fundoMain{
+    background-color: #1e2127;
+    border: 2px solid #111418;
+}
