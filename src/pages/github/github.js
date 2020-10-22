@@ -7,6 +7,7 @@ class GitHub extends Component{
         this.state = {
             user: [],
             repo: [],
+            isHiding: true,
         }
         this.input = React.createRef()
         this.mudarUsuario = this.mudarUsuario.bind(this);
@@ -34,22 +35,17 @@ class GitHub extends Component{
         fetch(url_repo)                                            //Esse comando pega as infos da API github dos repositórios
         .then( response => response.json() )                       //Esse comando converte as infos para o formato JSON 
         .then( data => {this.setState({repo: data})} )             //Esse comando coloca o valor 'data2' dentro do atributo 'data'
+        this.setState({isHiding: false});
     }
 
     render(){
-        const {user, repo} = this.state;
-        return<>
-          <div className="header col">Portal Course</div>
-          <br></br>
-          <div className="fundoMain container">
-            <div className="textos">Insira aqui um nome de usuário do GitHub:</div>
-            <input id="input" className="bg-card mt-1" ref={this.input} onChange={this.handleChange}></input> <button onClick={this.mudarUsuario} className="bg-card">Buscar</button>
-          </div>
-          <br></br>
-          <div className="container fundoMain">
-              <div className="row">
-                    <div className="col-3">
-                        <p className="info py-4 card bg-card">Infos do Usuário</p>
+        const {user, repo, isHiding} = this.state;
+
+        if(!isHiding){
+            var textogit = <div className="container fundoMain">
+            <div className="row">
+                <div className="col-md-3 col-12">
+                    <p className="info py-4 card bg-card">Infos do Usuário</p>
                         <div>
                             <img className="circle-photo" src={user.avatar_url}></img>
                         </div>
@@ -64,20 +60,31 @@ class GitHub extends Component{
                         </div>
                     </div>
 
-                    <div className="col-9">
+                    <div className="col-md-9 col-12">
                         <p className="info py-4 card bg-card mb-4">Repositórios</p>
 
                         {repo.map(
                             repositorio =>
                             <div className="textos card bg-card">
-                                Nome do Repositório: {repositorio.name} <br></br>
-                                Descrição: {repositorio.description} <br></br>
-                                Link do Repositório: <a href={repositorio.html_url}>Clique Aqui</a>
+                                <span className="textos2">Nome do Repositório: </span> {repositorio.name} <br></br>
+                                <span className="textos2">Descrição: </span> {repositorio.description} <br></br>
+                                <span className="textos2">Link do Repositório: </span> <a href={repositorio.html_url}>Clique Aqui</a>
                             </div>
                         )}
                     </div>
               </div>
           </div>
+        }
+
+        return<>
+          <div className="header col">Portal Course</div>
+          <br></br>
+          <div className="fundoMain container">
+            <div className="textos">Insira aqui um nome de usuário do GitHub:</div>
+            <input id="input" className="buttons mt-1" ref={this.input} onChange={this.handleChange}></input> <button onClick={this.mudarUsuario} className="buttons">Buscar</button>
+          </div>
+          <br></br>
+          {textogit}
           <br></br>
         </>
     }

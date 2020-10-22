@@ -1,0 +1,7 @@
+.infos{
+    color: #0a0a0a
+}
+
+.table th, .table td{
+    border-bottom: 0px solid black !important;
+}
