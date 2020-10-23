@@ -1,23 +1,29 @@
 import React, {Component} from 'react'
+import { Modal, Button, Form } from 'react-bootstrap' 
 import './apidragon.css'
 
 class Apidragon extends Component {
     constructor(){
         super();
-        this.state = {listDragons: [], dragon: {}, id_dragon: 0};
+        this.state = {listDragons: [], showModal: false, showAlert: false};
         this.onCreate = this.onCreate.bind(this);
         this.onEdit = this.onEdit.bind(this);
         this.onDelete = this.onDelete.bind(this);
     }
 
     componentDidMount(){
-        fetch("http://5c4b2a47aa8ee500142b4887.mockapi.io/api/v1/dragon")
-        .then( response => response.json() )
-        .then( data =>  {this.setState({listDragons: data}); } );
+        this.getList();
     }
 
-    onCreate(){
-        const dragon = {name: "Dragão de Comodo", type: "NODE_MODULES"}
+    onCreate(event){
+        event.preventDefault();
+        let form = event.target;
+
+        const dragon = {
+            name: form.elements.email.value,
+            type: form.elements.type.value,
+        } 
+        
         const request = {
             method: "POST",
             headers: {'Content-Type': 'application/json'},
@@ -26,7 +32,7 @@ class Apidragon extends Component {
 
         fetch("http://5c4b2a47aa8ee500142b4887.mockapi.io/api/v1/dragon", request)
         .then( response => response.json() )
-        .then( response2 => this.getList() )    
+        .then( response2 => getList() )    
     }
 
     onEdit(id){
@@ -45,12 +51,20 @@ class Apidragon extends Component {
         .then( response2 => this.getList() )
     }
 
+    handleModalClose(){
+        this.setState({showModal: false});
+    }
+
+    handleModalOpen(){
+        this.setState({showModal: true});
+    }
+
     render(){
-        const {listDragons} = this.state;
+        const {listDragons, showModal, showAlert} = this.state;
+
         return<>
-            <div className="header col">Portal Course</div>
             <div className="container">
-            <button className="btn btn-dark infos m-2" onClick={() => this.onCreate()}>Criar</button>
+            <button className="btn btn-dark buttons2 infos m-2" onClick={() => this.handleModalOpen()}>Criar</button>
                 <div className="row">
                     <div className="col card fundoMain">
                         <table className="table mt-5 mb-5">
@@ -73,8 +87,8 @@ class Apidragon extends Component {
                                         <td className="bg-card">{dragon.type}</td>
                                         <td className="bg-card">{dragon.createdAt}</td>
                                         <td className="bg-card">
-                                            <button className="btn btn-dark infos mr-1" onClick={() => this.onEdit(dragon.id)}>Editar</button>
-                                            <button className="btn btn-dark infos ml-1" onClick={() => this.onDelete(dragon.id)}>Deletar</button>
+                                            <button className="btn btn-dark buttons2 infos mr-1" onClick={() => this.onEdit(dragon.id)}>Editar</button>
+                                            <button className="btn btn-dark buttons2 infos ml-1" onClick={() => this.onDelete(dragon.id)}>Deletar</button>
                                         </td>
                                     </tr>
                                 )}
@@ -84,7 +98,36 @@ class Apidragon extends Component {
                 </div>
                 <br></br>
             </div>
-        </>;
+            <Modal show={showModal} onHide={()=> this.handleModalClose()}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Criar Dragão</Modal.Title>
+                </Modal.Header>
+
+                <Modal.Body>
+                    <Form onSubmit={this.onCreate}>
+                        <Form.Group controlId="formName">
+                            <Form.Label>Name:</Form.Label>
+                            <Form.Control type="text" name="name"></Form.Control>
+                        </Form.Group>
+
+                        <Form.Group controlId="formType">
+                            <Form.Label>Tipo:</Form.Label>
+                            <Form.Control type="text" name="type"></Form.Control>
+                        </Form.Group>
+
+                        <Button variant="primary" type="submit">
+                            Submit
+                        </Button>
+                    </Form>
+                </Modal.Body>
+
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={() => this.handleModalClose()}>
+                        Close
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+        </>
     }
 }
 

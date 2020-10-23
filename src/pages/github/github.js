@@ -40,9 +40,10 @@ class GitHub extends Component{
 
     render(){
         const {user, repo, isHiding} = this.state;
+        let textogit = "";
 
         if(!isHiding){
-            var textogit = <div className="container fundoMain">
+            textogit = <div className="container fundoMain">
             <div className="row">
                 <div className="col-md-3 col-12">
                     <p className="info py-4 card bg-card">Infos do Usuário</p>
@@ -68,7 +69,7 @@ class GitHub extends Component{
                             <div className="textos card bg-card">
                                 <span className="textos2">Nome do Repositório: </span> {repositorio.name} <br></br>
                                 <span className="textos2">Descrição: </span> {repositorio.description} <br></br>
-                                <span className="textos2">Link do Repositório: </span> <a href={repositorio.html_url}>Clique Aqui</a>
+                                <span className="textos2">Link do Repositório: </span> <a href={repositorio.html_url}>Clique Aqui</a> <br></br>
                             </div>
                         )}
                     </div>
@@ -77,7 +78,6 @@ class GitHub extends Component{
         }
 
         return<>
-          <div className="header col">Portal Course</div>
           <br></br>
           <div className="fundoMain container">
             <div className="textos">Insira aqui um nome de usuário do GitHub:</div>

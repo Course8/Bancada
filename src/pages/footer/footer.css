@@ -9,10 +9,38 @@ footer{
     width: 100%;
 }
 
-.dir{
+.dir p{
     text-align: center;
     font-size: 25px;
     margin-top: 5px;
+}
+
+.imgDir{
+  height: 50px;
+}
+
+.imgDir img{
+  height: 35px;
+  width: 35px;
+  margin-right: 1rem;
+}
+
+.imgDir img:hover{
+  height: 40px;
+  width: 40px;
+  margin-right: 1rem;
+}
+
+a{
+  text-align: center;
+  font-size: 20px;
+  color: #474747
+}
+
+a:hover{
+  text-align: center;
+  font-size: 20px;
+  color: #0c0c0c
 }
 
 @media only screen and (max-width: 768px){

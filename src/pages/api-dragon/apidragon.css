@@ -1,7 +1,13 @@
 .infos{
-    color: #0a0a0a
+    color: #0a0a0a;
 }
 
 .table th, .table td{
     border-bottom: 0px solid black !important;
+}
+
+.buttons2{
+    background-color: #21242b;
+    color: #626366;
+    font-weight: bold;
 }
