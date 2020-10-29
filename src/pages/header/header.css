@@ -1,9 +1,69 @@
-.crud{
-    color: #292933;
-    background-color: #3f4552;
-    font-size: 40px;
-    font-weight: bolder;
-    text-decoration: underline;
+  .header{
+    font-size: 70px;
+    background-color: #1c1f27;
     text-align: center;
+    font-family: 'Staatliches', cursive;
+    letter-spacing: 4px;
+    border: 2px solid #111418;
+    color:#4b4b4b;
+  }
+  
+  .header2{
+    background-color: #1f2229;
+    text-align: center;
+    font-weight: bold;
     font-family: 'Montserrat', sans-serif;
-}
+    letter-spacing: 3px;
+    border: 2px solid #111418;
+    color:#4371c7;
+  }
+  
+  .header2 a{
+    font-size: 30px;
+    color:#3661af;
+    margin-right: 8px;
+  }
+  
+  .header2 a:hover{
+    font-size: 30px;
+    color:#055cff;
+    margin-right: 8px;
+  }
+
+  @media only screen and (max-width: 768px){
+    .header{
+      font-size: 55px;
+      background-color: #1c1f27;
+      text-align: center;
+      font-family: 'Staatliches', cursive;
+      padding: 10px;
+      letter-spacing: 2.5px;
+      word-spacing: 3px;
+      border: 2px solid #111418;
+      color:#4b4b4b;
+    }
+
+    .header2{
+      background-color: #1f2229;
+      text-align: center;
+      font-weight: bold;
+      font-family: 'Montserrat', sans-serif;
+      padding-top: 2px;
+      padding-bottom: 2px;
+      letter-spacing: 3px;
+      border: 2px solid #111418;
+      color:#4371c7;
+    }
+
+    .header2 a{
+      font-size: 17px;
+      color:#3661af;
+      margin-right: 1.2px;
+    }
+      
+    .header2 a:hover{
+      font-size: 17px;
+      color:#055cff;
+      margin-right: 1.2px;
+    }
+  }

@@ -1,16 +1,24 @@
 import React from 'react';
+import {Link, Route} from 'react-router-dom';
 import './App.css';
 import Header from './pages/header/header.js';
-import GitHub from './pages/github/github.js';
 import Footer from './pages/footer/footer.js';
-import Apidragon from './pages/api-dragon/apidragon';
+import routesConfig from './routesConfig';
 
 function App() {
   return (
     <div className="App">
         <Header></Header>
-        {/* <GitHub></GitHub> */}
-        <Apidragon></Apidragon>
+        {routesConfig.map(
+          (value, key) => {
+            return <Route
+            key={key}
+            path={value.path}
+            component={value.component}
+            exact={value.exact}
+            ></Route>
+          }
+        )}
         <Footer></Footer>
     </div>
   );
