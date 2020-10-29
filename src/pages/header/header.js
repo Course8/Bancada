@@ -11,10 +11,10 @@ class Header extends Component{
             <header>
                 <div className="header2">
                     <nav>
-                        <span><a href="">Home</a> </span>
+                        <span><Link to="/"><a href="">Home</a></Link> </span>
                         <span><Link to="/github"><a href="">GitHub</a></Link> </span>
                         <span><Link to="/apidragon"><a href="">Apidragon</a></Link> </span>
-                        <span><a href="">Sobre</a> </span>
+                        <span><Link to="/sobre"><a href="">Sobre</a></Link> </span>
                     </nav>
                 </div>
             </header>
