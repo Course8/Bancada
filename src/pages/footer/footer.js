@@ -19,9 +19,9 @@ class Footer extends Component{
                             <div className="row imgDir mr-3">
                                 <div className="col ml-5">
                                     <a href="https://facebook.com"><img src={facebook}></img></a>
-                                    <a href="https://twittter.com/cursoito"><img src={twitter}></img></a>
+                                    <a href="https://twitter.com/cursoito"><img src={twitter}></img></a>
                                     <a href="https://instagram.com"><img src={instagram}></img></a>
-                                    <a href="https://whatsapp.com"><img src={whatsapp}></img></a>
+                                    <a href="https://api.whatsapp.com/send?phone=+555195218066"><img src={whatsapp}></img></a>
                                     <a href="https://discord.com"><img src={discord}></img></a>
                                 </div>
                             </div>
@@ -32,7 +32,7 @@ class Footer extends Component{
                         </div>
 
                         <div className="col texto">
-                            <p className="">Email: <a href="mailto:superleogame@gmail.com">superleogame@gmail.com</a></p>
+                            <p className="">Email: <a href="mailto:leonardomm14@outlook.com">leonardomm14@outlook.com</a></p>
                         </div>
                     </div>
 

@@ -8,17 +8,22 @@ import routesConfig from './routesConfig';
 function App() {
   return (
     <div className="App">
+
         <Header></Header>
+
         {routesConfig.map(
           (value, key) => {
             return <Route
+
             key={key}
             path={value.path}
             component={value.component}
             exact={value.exact}
+            
             ></Route>
           }
         )}
+
         <Footer></Footer>
     </div>
   );
