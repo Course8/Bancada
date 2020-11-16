@@ -1,20 +1,16 @@
 import React, {Component} from 'react'
 import { Modal, Button, Form } from 'react-bootstrap' 
+import { Link } from 'react-router-dom'
 import './apidragon.css'
 
 class Apidragon extends Component {
     constructor(){
         super();
-        this.state = {listDragons: [], showModal: false, showAlert: false};
-        this.onCreate = this.onCreate.bind(this);
-        this.onEdit = this.onEdit.bind(this);
-        this.onDelete = this.onDelete.bind(this);
+        this.state = {listDragons: [], showModalDeletar: false, dragon: [], id_dragon: 0};
     }
 
     componentDidMount(){
-        fetch("http://5c4b2a47aa8ee500142b4887.mockapi.io/api/v1/dragon")
-        .then( response => response.json() )
-        .then( data => {this.setState({listDragons: data}) } )
+        this.getList();
     }
 
     getList(){
@@ -23,50 +19,27 @@ class Apidragon extends Component {
         .then( data =>  {this.setState({listDragons: data})} )
     }
 
-    async onCreate(event){
-        // event.preventDefault();
-        // let form = event.target;
-
-        const dragon = {
-            name: "testeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
-            type: "testeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
-        } 
-        
-        const request = {
-            method: "POST",
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(dragon),
-        }
-
-        await fetch("http://5c4b2a47aa8ee500142b4887.mockapi.io/api/v1/dragon", request)
-        .then( response => response.json() )
-        .then( response2 => console.log(response2) )    
-    }
-
-    onEdit(id){
-        console.log("Edit: " + id)
-    }
-
     onDelete(id){
-        fetch("http://5c4b2a47aa8ee500142b4887.mockapi.io/api/v1/dragon/" + id, {method: 'DELETE'})
+        fetch("http://5c4b2a47aa8ee500142b4887.mockapi.io/api/v1/dragon/" + this.state.id_dragon, {method: 'DELETE'})
         .then( response => response.json() )
-        .then( response2 => this.getList() )
+        .then( () => {this.getList(); this.fechaModalDeletar()} )
     }
 
-    handleModalClose(){
-        this.setState({showModal: false});
+    fechaModalDeletar(){
+        this.setState({showModalDeletar: false});
     }
 
-    handleModalOpen(){
-        this.setState({showModal: true});
+    abreModalDeletar(id_dragon){
+        this.setState({id_dragon: id_dragon})
+        this.setState({showModalDeletar: true});
     }
 
     render(){
-        const {listDragons, showModal, showAlert} = this.state;
+        const {listDragons, showModalDeletar} = this.state;
 
         return<>
             <div className="container">
-            <button className="btn btn-dark buttons2 infos m-2" onClick={() => this.onCreate()}>Criar</button>
+            <Link to="/apidragon/add" className="btn btn-dark buttons2 infos m-2" onClick={() => this.onCreate()}>Criar</Link>
                 <div className="row">
                     <div className="col-md-12 col-9 card fundoMain">
                         <table className="table mt-5 mb-5">
@@ -89,8 +62,8 @@ class Apidragon extends Component {
                                         <td className="bg-card">{dragon.type}</td>
                                         <td className="bg-card">{dragon.createdAt}</td>
                                         <td className="bg-card">
-                                            <button className="btn btn-dark buttons2 infos mr-1" onClick={() => this.onEdit(dragon.id)}>Editar</button>
-                                            <button className="btn btn-dark buttons2 infos ml-1" onClick={() => this.onDelete(dragon.id)}>Deletar</button>
+                                            <Link to={'/apidragon/edit/$(dragon.id)'} className="btn btn-dark buttons2 infos mr-1">Editar</Link>
+                                            <button className="btn btn-dark buttons2 infos ml-1" onClick={() => this.abreModalDeletar(dragon.id)}>Deletar</button>
                                         </td>
                                     </tr>
                                 )}
@@ -100,34 +73,22 @@ class Apidragon extends Component {
                 </div>
                 <br></br>
             </div>
-            <Modal show={showModal} onHide={()=> this.handleModalClose()}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Criar Dragão</Modal.Title>
-                </Modal.Header>
+            <Modal show={showModalDeletar} onHide={()=> this.fechaModalDeletar()}>
+                <Modal.Header closeButton className="fundoForm">
+                    <Modal.Title className="textos">Deletar Dragão</Modal.Title>
+                </Modal.Header>    
 
-                <Modal.Body>
-                    <Form onSubmit={this.onCreate}>
-                        <Form.Group controlId="formName">
-                            <Form.Label>Name:</Form.Label>
-                            <Form.Control type="text" name="name"></Form.Control>
-                        </Form.Group>
+                <Modal.Body className="fundoForm2">
+                    <p className="textos2">Tem certeza que quer deletar o dragão?</p>
 
-                        <Form.Group controlId="formType">
-                            <Form.Label>Tipo:</Form.Label>
-                            <Form.Control type="text" name="type"></Form.Control>
-                        </Form.Group>
-
-                        <Button variant="primary" type="submit">
-                            Submit
-                        </Button>
-                    </Form>
-                </Modal.Body>
-
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={() => this.handleModalClose()}>
-                        Close
+                    <Button className="mr-1"variant="dark" onClick={() => this.onDelete()}>
+                            Deletar
                     </Button>
-                </Modal.Footer>
+
+                    <Button className="ml-1"variant="dark" onClick={() => this.fechaModalDeletar()}>
+                            Fechar
+                    </Button>
+                </Modal.Body>
             </Modal>
         </>
     }
