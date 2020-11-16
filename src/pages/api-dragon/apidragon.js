@@ -12,24 +12,16 @@ class Apidragon extends Component {
     }
 
     componentDidMount(){
-        fetch("http://5c4b2a47aa8ee500142b4887.mockapi.io/api/v1/dragon")
-        .then( response => response.json() )
-        .then( data => {this.setState({listDragons: data}) } )
+        this.getList();
     }
 
-    getList(){
-        fetch("http://5c4b2a47aa8ee500142b4887.mockapi.io/api/v1/dragon")
-        .then( response => response.json() )
-        .then( data =>  {this.setState({listDragons: data})} )
-    }
-
-    async onCreate(event){
-        // event.preventDefault();
-        // let form = event.target;
+    onCreate(event){
+        event.preventDefault();
+        let form = event.target;
 
         const dragon = {
-            name: "testeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
-            type: "testeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+            name: form.elements.email.value,
+            type: form.elements.type.value,
         } 
         
         const request = {
@@ -38,13 +30,18 @@ class Apidragon extends Component {
             body: JSON.stringify(dragon),
         }
 
-        await fetch("http://5c4b2a47aa8ee500142b4887.mockapi.io/api/v1/dragon", request)
+        fetch("http://5c4b2a47aa8ee500142b4887.mockapi.io/api/v1/dragon", request)
         .then( response => response.json() )
-        .then( response2 => console.log(response2) )    
     }
 
     onEdit(id){
         console.log("Edit: " + id)
+    }
+
+    getList(){
+        fetch("http://5c4b2a47aa8ee500142b4887.mockapi.io/api/v1/dragon")
+        .then( response => response.json() )
+        .then( data =>  {this.setState({listDragons: data}); } );
     }
 
     onDelete(id){
@@ -66,9 +63,9 @@ class Apidragon extends Component {
 
         return<>
             <div className="container">
-            <button className="btn btn-dark buttons2 infos m-2" onClick={() => this.onCreate()}>Criar</button>
+            <button className="btn btn-dark buttons2 infos m-2" onClick={() => this.handleModalOpen()}>Criar</button>
                 <div className="row">
-                    <div className="col-md-12 col-9 card fundoMain">
+                    <div className="col card fundoMain">
                         <table className="table mt-5 mb-5">
                             <thead className="titulo bg-card">
                                 <tr className="bg-card">
