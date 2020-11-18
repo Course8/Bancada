@@ -145,18 +145,11 @@ class Apidragon extends Component {
                     </div>
                 <br></br>
             </div>
-<<<<<<< HEAD
 
             <Modal show={showModalDeletar} onHide={()=> this.fechaModalDeletar()}>
                 <Modal.Header closeButton className="fundoForm">
                     <Modal.Title className="textos">Deletar Dragão</Modal.Title>
                 </Modal.Header>    
-=======
-            <Modal show={showModal} onHide={()=> this.handleModalClose()}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Criar Dragão</Modal.Title>
-                </Modal.Header>
->>>>>>> f37f6bcde7561577f0eec80db254e0711706544b
 
                 <Modal.Body>
                     <Form onSubmit={this.onCreate}>
