@@ -1,47 +1,22 @@
 import React, {Component} from 'react'
 import { Modal, Button, Form } from 'react-bootstrap' 
+import { Link } from 'react-router-dom'
 import './apidragon.css'
 
 class Apidragon extends Component {
     constructor(){
         super();
-        this.state = {listDragons: [], showModal: false, showAlert: false};
-        this.onCreate = this.onCreate.bind(this);
-        this.onEdit = this.onEdit.bind(this);
-        this.onDelete = this.onDelete.bind(this);
+        this.state = {listDragons: [], showModalDeletar: false, dragon: [], id_dragon: 0};
     }
 
     componentDidMount(){
         this.getList();
     }
 
-    onCreate(event){
-        event.preventDefault();
-        let form = event.target;
-
-        const dragon = {
-            name: form.elements.email.value,
-            type: form.elements.type.value,
-        } 
-        
-        const request = {
-            method: "POST",
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(dragon),
-        }
-
-        fetch("http://5c4b2a47aa8ee500142b4887.mockapi.io/api/v1/dragon", request)
-        .then( response => response.json() )
-    }
-
-    onEdit(id){
-        console.log("Edit: " + id)
-    }
-
     getList(){
         fetch("http://5c4b2a47aa8ee500142b4887.mockapi.io/api/v1/dragon")
         .then( response => response.json() )
-        .then( data =>  {this.setState({listDragons: data}); } );
+        .then( data =>  {this.setState({listDragons: data})} )
     }
 
     onCreate(event) {
@@ -64,21 +39,22 @@ class Apidragon extends Component {
     }
 
     onDelete(id){
-        fetch("http://5c4b2a47aa8ee500142b4887.mockapi.io/api/v1/dragon/" + id, {method: 'DELETE'})
+        fetch("http://5c4b2a47aa8ee500142b4887.mockapi.io/api/v1/dragon/" + this.state.id_dragon, {method: 'DELETE'})
         .then( response => response.json() )
-        .then( response2 => this.getList() )
+        .then( () => {this.getList(); this.fechaModalDeletar()} )
     }
 
-    handleModalClose(){
-        this.setState({showModal: false});
+    fechaModalDeletar(){
+        this.setState({showModalDeletar: false});
     }
 
-    handleModalOpen(){
-        this.setState({showModal: true});
+    abreModalDeletar(id_dragon){
+        this.setState({id_dragon: id_dragon})
+        this.setState({showModalDeletar: true});
     }
 
     render(){
-        const {listDragons, showModal, showAlert} = this.state;
+        const {listDragons, showModalDeletar} = this.state;
 
         return<>
             <div className="container">
@@ -151,29 +127,17 @@ class Apidragon extends Component {
                     <Modal.Title className="textos">Deletar Dragão</Modal.Title>
                 </Modal.Header>    
 
-                <Modal.Body>
-                    <Form onSubmit={this.onCreate}>
-                        <Form.Group controlId="formName">
-                            <Form.Label>Name:</Form.Label>
-                            <Form.Control type="text" name="name"></Form.Control>
-                        </Form.Group>
+                <Modal.Body className="fundoForm2">
+                    <p className="textos2">Tem certeza que quer deletar o dragão?</p>
 
-                        <Form.Group controlId="formType">
-                            <Form.Label>Tipo:</Form.Label>
-                            <Form.Control type="text" name="type"></Form.Control>
-                        </Form.Group>
-
-                        <Button variant="primary" type="submit">
-                            Submit
-                        </Button>
-                    </Form>
-                </Modal.Body>
-
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={() => this.handleModalClose()}>
-                        Close
+                    <Button className="mr-1"variant="dark" onClick={() => this.onDelete()}>
+                            Deletar
                     </Button>
-                </Modal.Footer>
+
+                    <Button className="ml-1"variant="dark" onClick={() => this.fechaModalDeletar()}>
+                            Fechar
+                    </Button>
+                </Modal.Body>
             </Modal>
         </>
     }
