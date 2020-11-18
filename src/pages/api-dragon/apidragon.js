@@ -9,7 +9,7 @@ class Apidragon extends Component {
         this.state = {listDragons: [], showModalDeletar: false, dragon: [], id_dragon: 0};
     }
 
-    componentDidMount(){
+    componentDidMount(){ 
         this.getList();
     }
 
@@ -17,25 +17,6 @@ class Apidragon extends Component {
         fetch("http://5c4b2a47aa8ee500142b4887.mockapi.io/api/v1/dragon")
         .then( response => response.json() )
         .then( data =>  {this.setState({listDragons: data})} )
-    }
-
-    onCreate(event) {
-        this.event.preventDefault();
-        let form = event.target;
-
-        const dragon = {
-            name: form.elements.name.value,
-            type: form.elements.type.value,
-        };
-
-        const request = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(dragon)
-        }
-
-        fetch('http://5c4b2a47aa8ee500142b4887.mockapi.io/api/v1/dragon/', request)
-        .then(response => response.json())
     }
 
     onDelete(id){
@@ -59,7 +40,7 @@ class Apidragon extends Component {
         return<>
             <div className="container">
                 <div className="textos2 card fundoMain mt-5 mb-3">Dragões:</div>
-                <button className="btn btn-dark buttons2 infos m-2"><Link to="/apidragon/add" onClick={() => this.onCreate()}>Criar</Link></button>
+                <button className="btn btn-dark buttons2 infos m-2"><Link to="/apidragon/add">Criar</Link></button>
                     <div className="row">
 
                         {/* desktop */}

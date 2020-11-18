@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Logo from '../../img/Portal-Course-Logo.png'
 
 class Home extends Component{
     render(){

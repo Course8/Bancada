@@ -8,6 +8,7 @@ class Header extends Component{
             <header>
                 <div className="header">Portal Course</div>
             </header>
+            
             <header>
                 <div className="header2">
                     <nav>
