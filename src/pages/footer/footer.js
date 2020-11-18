@@ -14,21 +14,21 @@ class Footer extends Component{
             <footer className="pt-3">
                 <div className="container">
                     <div className="row">
-                    <div className="col">
-                            <p className="">Redes Sociais:</p>
+                        <div className="col">
+                            <span className="">Redes Sociais:</span>
                             <div className="row imgDir mr-3">
-                                <div className="col ml-5">
-                                    <a href="https://facebook.com"><img src={facebook}></img></a>
-                                    <a href="https://twitter.com/cursoito"><img src={twitter}></img></a>
-                                    <a href="https://instagram.com"><img src={instagram}></img></a>
-                                    <a href="https://api.whatsapp.com/send?phone=+555195218066"><img src={whatsapp}></img></a>
-                                    <a href="https://discord.com"><img src={discord}></img></a>
+                                <div className="col-12 col-md ml-md-5 ml-6">
+                                    <a href="https://www.facebook.com/profile.php?id=100010774175639" target="_blank"><img src={facebook}></img></a>
+                                    <a href="https://twitter.com/cursoito" target="_blank"><img src={twitter}></img></a>
+                                    <a href="https://www.instagram.com/leocourse8/?hl=pt-br" target="_blank"><img src={instagram}></img></a>
+                                    <a href="https://api.whatsapp.com/send?phone=+555195218066" target="_blank"><img src={whatsapp}></img></a>
+                                    <a href="https://discord.com" target="_blank"><img src={discord}></img></a>
                                 </div>
                             </div>
                         </div>  
 
                         <div className="col texto mb-4">
-                            <p className="">Endereço: <br></br><a href={localizacao}>Rua Severo da Silva, RS Brasil</a></p>
+                            <p className="">Endereço: <br></br><a href={localizacao} target="_blank">Rua Severo da Silva, RS Brasil</a></p>
                         </div>
 
                         <div className="col texto">
@@ -37,10 +37,10 @@ class Footer extends Component{
                     </div>
 
                     <div className="row">
-                        <div className="col texto mb-4"><p>Telefone: <br></br><a href="tel:51995218066">(51) 99521-8066</a></p></div>
+                        <div className="col texto mb-md-4"><p>Telefone: <br></br><a href="tel:51995218066">(51) 99521-8066</a></p></div>
                     </div>
                 </div>
-                <p className="dir pb-3">Direitos Reservados © Course</p>
+                <p className="dir pb-3">Direitos Reservados © Leonardo</p>
             </footer>
         )
     }

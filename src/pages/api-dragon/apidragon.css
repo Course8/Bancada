@@ -19,3 +19,33 @@
 .fundoForm2{
     background-color: #21242b;
 }
+
+.buttonCreate{
+    color: #626366;
+    font-weight: bold;
+    width: 90px;
+    height: 40px;
+}
+
+
+
+@media only screen and (min-width: 768px) {
+    .desktop{
+        display: show;
+    }
+    
+    .mobile{
+        display: none;
+    }
+ }
+
+@media only screen and (max-width: 768px){
+
+    .desktop{
+        display: none;
+    }
+
+    .mobile{
+        display: show;
+    }
+}

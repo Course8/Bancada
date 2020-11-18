@@ -27,17 +27,27 @@ class ApiDragonForm extends Component {
         }
     }
 
+    handleChange(event){
+        this.setState({value: event.target.value})
+    }
+
     render(){
         const {title, action, data} = this.state;
         return<>
-            <p>{title}</p>
-            <form>
-                <label>Name</label>
-                <input type="text" name="name" value=""></input>
-                <label>Type</label>
-                <input type="text" name="type" value=""></input>
-                <button type="submit">{action}</button>
-            </form>
+            <div className="py-4">
+                <div className="container fundoMain">
+                    <form className="bg-card">
+                        <p className="textos">{title}</p>
+                        <label className="textos">Nome:</label>
+                        <input className="buttons" type="text" name="name" value={this.state.textValue} onChange={() => this.changeInput} ></input>
+                        <br></br>
+                        <label className="textos">Tipo:</label>
+                        <input className="buttons" type="text" name="type" value={this.state.textValue} onChange={() => this.changeInput} ></input>
+                        <br></br>
+                        <button className="buttons buttonCreate" type="submit">{action}</button>
+                    </form>
+                </div>
+            </div>
         </>;
     }
 }

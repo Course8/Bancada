@@ -46,7 +46,7 @@ class GitHub extends Component{
             textogit = <div className="container fundoMain">
             <div className="row">
                 <div className="col-md-3 col-12">
-                    <p className="info py-4 card bg-card">Infos do Usuário</p>
+                    <p className="info py-4 card bg-card">Infos do Usuário:</p>
                         <div>
                             <img className="circle-photo" src={user.avatar_url}></img>
                         </div>
@@ -56,20 +56,20 @@ class GitHub extends Component{
                         </div>
 
                         <div className="info card bg-card py-4">
-                            <p>Followers: {user.followers}</p>
-                            <p>Following: {user.following}</p>
+                            <p>Seguidores: {user.followers}</p>
+                            <p>Seguindo: {user.following}</p>
                         </div>
                     </div>
 
                     <div className="col-md-9 col-12">
-                        <p className="info py-4 card bg-card mb-4">Repositórios</p>
+                        <p className="info py-4 card bg-card mb-4 mb-md">Repositórios:</p>
 
                         {repo.map(
                             repositorio =>
                             <div className="textos card bg-card">
                                 <span className="textos2">Nome do Repositório: </span> {repositorio.name} <br></br>
                                 <span className="textos2">Descrição: </span> {repositorio.description} <br></br>
-                                <span className="textos2">Link do Repositório: </span> <a href={repositorio.html_url}>Clique Aqui</a> <br></br>
+                                <span className="textos2">Link do Repositório: </span> <a href={repositorio.html_url} target="_blank">Clique Aqui</a> <br></br>
                             </div>
                         )}
                     </div>

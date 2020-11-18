@@ -48,4 +48,10 @@
       font-weight: bold;
       padding: 10px;
     }
+
+    .circle-photo {
+        height: 70%;
+        width: 70%;
+        border-radius: 50%;
+    }
 } 
